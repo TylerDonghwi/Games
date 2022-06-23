@@ -1,0 +1,9 @@
+* {
+    /* initially they are all zero for easier maintanence */
+    box-sizing: border-box;
+    background-color: azure;
+}
+
+header {
+    text-align: center;
+}
