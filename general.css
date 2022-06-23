@@ -1,9 +1,50 @@
 * {
     /* initially they are all zero for easier maintanence */
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
     background-color: azure;
+    font-family: 'Press Start 2P', cursive;
 }
+
+
+/* header */
 
 header {
     text-align: center;
+}
+
+header a {
+    color: azure;
+    text-decoration: none;
+}
+
+header h1 {
+    background-color: gray;
+    padding: 30px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+}
+
+.navigation * {
+    background-color: black;
+}
+
+.navigation a {
+    max-width: 25%;
+    color: azure;
+    padding: 10px;
+}
+
+
+/* media Queries */
+
+@media(max-width: 700px) {
+    .navigation a {
+        font-size: 10px;
+    }
 }
