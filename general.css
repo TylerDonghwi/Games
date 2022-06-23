@@ -24,6 +24,9 @@ header h1 {
     padding: 30px;
 }
 
+
+/* navigation */
+
 .navigation {
     display: flex;
     justify-content: space-around;
