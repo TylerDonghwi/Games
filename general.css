@@ -43,6 +43,12 @@ header h1 {
     padding: 10px;
 }
 
+.name {
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
 
 /* media Queries */
 
