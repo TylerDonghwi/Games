@@ -26,16 +26,26 @@
     </header>
 
     <div class="name">Rock Paper Scissors</div>
+    <div id="outerDiv">
+        <div id="gameDiv">
+            <div id="gameTextDiv">
+                <p class="gameText" id="playerText">Player: </p>
+                <p class="gameText" id="computerText">Computer: </p>
+                <p class="gameText" id="result">Result: </p>
+            </div>
 
-    <div id="gameDiv">
-        <p class="gameText" id="playerText">Player: </p>
-        <p class="gameText" id="computerText">Computer: </p>
-        <p class="gameText" id="result">Result: </p>
-        <button class="choiceBtn">ROCK</button>
-        <button class="choiceBtn">PAPER</button>
-        <button class="choiceBtn">SCISSORS</button>
+            <button class="choiceBtn">ROCK</button>
+            <button class="choiceBtn">PAPER</button>
+            <button class="choiceBtn">SCISSORS</button>
+
+            <div id="winCountsDiv">
+                <p id="playerWins">Player: 0</p>
+                <p id="computerWins">Computer: 0</p>
+            </div>
+        </div>
+
+        <button id="resetBtn">Reset</button>
     </div>
-
 
 
 

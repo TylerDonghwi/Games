@@ -1,14 +1,19 @@
 @import url(../general.css);
+#outerDiv {
+    text-align: center;
+    margin: 20px;
+}
+
 #gameDiv {
     border: 3px solid;
     border-radius: 2px;
     padding: 20px;
-    text-align: center;
+    margin-bottom: 5px;
 }
 
-#gameDiv p {
+#gameTextDiv p {
     margin-bottom: 20px;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .choiceBtn {
@@ -19,15 +24,26 @@
     transition: all 0.2s;
 }
 
-.choiceBtn:hover {
+button:hover {
     box-shadow: 1px 1px 1px;
     background-color: rgb(181, 200, 200);
 }
 
-.choiceBtn:active {
+button:active {
     left: 1px;
     top: 1px;
     box-shadow: none;
+}
+
+#winCountsDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#winCountsDiv p {
+    margin-top: 20px;
+    font-size: 15px;
 }
 
 #playerText {
@@ -38,8 +54,14 @@
     color: red;
 }
 
+#resetBtn {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+}
+
 @media(max-width:750px) {
-    #gameDiv p {
+    #gameTextDiv p {
         font-size: 25px;
     }
 }
