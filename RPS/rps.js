@@ -10,8 +10,11 @@ let result
 
 let playerWinCounts = 0;
 let computerWinCounts = 0;
+let drawCounts = 0;
+
 const playerWins = document.querySelector("#playerWins")
 const computerWins = document.querySelector('#computerWins')
+const draws = document.querySelector('#draws')
 
 choiceBtns.forEach(button => {
     button.addEventListener('click', () => {
@@ -27,8 +30,10 @@ choiceBtns.forEach(button => {
 resetBtn.addEventListener('click', () => {
     playerWinCounts = 0
     computerWinCounts = 0
+    drawCounts = 0
     playerWins.textContent = `Player: ${playerWinCounts}`
     computerWins.textContent = `Computer: ${computerWinCounts}`
+    draws.textContent = `Draw: ${drawCounts}`
 })
 
 function computerTurn() {
@@ -61,7 +66,10 @@ function updateWinCounts() {
         playerWinCounts++
     } else if (resultText.textContent == "Result: Computer Wins!") {
         computerWinCounts++
+    } else {
+        drawCounts++
     }
     playerWins.textContent = `Player: ${playerWinCounts}`
     computerWins.textContent = `Computer: ${computerWinCounts}`
+    draws.textContent = `Draw: ${drawCounts}`
 }

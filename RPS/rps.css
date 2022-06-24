@@ -43,7 +43,7 @@ button:active {
 
 #winCountsDiv p {
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 25px;
 }
 
 #playerText {
@@ -63,5 +63,8 @@ button:active {
 @media(max-width:750px) {
     #gameTextDiv p {
         font-size: 25px;
+    }
+    #winCountsDiv p {
+        font-size: 15px;
     }
 }
