@@ -1,1 +1,45 @@
 @import url(../general.css);
+#gameDiv {
+    border: 3px solid;
+    border-radius: 2px;
+    padding: 20px;
+    text-align: center;
+}
+
+#gameDiv p {
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.choiceBtn {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgb(181, 210, 210);
+    transition: all 0.2s;
+}
+
+.choiceBtn:hover {
+    box-shadow: 1px 1px 1px;
+    background-color: rgb(181, 200, 200);
+}
+
+.choiceBtn:active {
+    left: 1px;
+    top: 1px;
+    box-shadow: none;
+}
+
+#playerText {
+    color: blue;
+}
+
+#computerText {
+    color: red;
+}
+
+@media(max-width:750px) {
+    #gameDiv p {
+        font-size: 25px;
+    }
+}
