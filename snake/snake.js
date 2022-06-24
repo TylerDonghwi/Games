@@ -28,15 +28,30 @@ let snake = [
 
 window.addEventListener("keydown", changeDirection)
 
-// resetBtn.addEventListener("click", resetGame)
+// resetBtn.addEventListener("click", audio.play())
 
 gameStart()
 createFood()
 drawFood()
 
-function gameStart() {}
+function gameStart() {
+    running = true
+    scoreText.textContent = score
+    createFood()
+    drawFood()
+    nextTick()
+}
 
-function nextTick() {}
+function nextTick() {
+    if (running) {
+        setTimeout(() => {
+            clearBoard()
+            drawFood()
+            moveSnake()
+            drawSnake
+        })
+    }
+}
 
 function clearBoard() {}
 
@@ -64,7 +79,9 @@ function checkGameOver() {}
 
 function displayGameOver() {}
 
-function resetGame() {}
+function resetGame() {
+    console.log("hi")
+}
 
 
 
