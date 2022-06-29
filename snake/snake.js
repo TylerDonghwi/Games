@@ -10,6 +10,7 @@ const snakeBorder = "black"
 const foodColor = ["red", "blue", "orange", "yellow", "green", "purple", "navy"];
 const unitSize = 25;
 
+
 let running = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
@@ -50,7 +51,7 @@ function nextTick() {
             drawSnake()
             checkGameOver()
             nextTick()
-        }, 500)
+        }, 50)
     } else {
         displayGameOver()
         const audio = document.querySelector("#audio-loss")
@@ -138,8 +139,49 @@ function changeDirection(event) {
     }
 }
 
-function checkGameOver() {}
+function checkGameOver() {
+    switch (true) {
+        // if the snake hits the border of the gameBoard it's game over
+        case (snake[0].x < 0):
+            running = false
+            break
+        case (snake[0].x >= gameWidth):
+            running = false
+            break
+        case (snake[0].y < 0):
+            running = false
+            break
+        case (snake[0].y >= gameHeight):
+            running = false
+            break
 
-function displayGameOver() {}
+    }
+    for (let i = 1; i < snake.length; i += 1) {
+        // if the snake hits its body part its game over
+        if (snake[i].x == snake[0].x && snake[i].y == snake[0].y) {
+            running = false
+        }
+    }
+}
 
-function resetGame() {}
+function displayGameOver() {
+    context.font = '50px Press-Start-2P'
+    context.fillStyle = 'black'
+    context.textAlign = 'center'
+    context.fillText("Game Over", gameWidth / 2, gameHeight / 2)
+    running = false;
+}
+
+function resetGame() {
+    score = 0;
+    xVelocity = unitSize
+    yVelocity = 0
+    snake = [
+        { x: unitSize * 4, y: 0 },
+        { x: unitSize * 3, y: 0 },
+        { x: unitSize * 2, y: 0 },
+        { x: unitSize, y: 0 },
+        { x: 0, y: 0 }
+    ]
+    gameStart()
+}
