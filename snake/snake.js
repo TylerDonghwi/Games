@@ -10,8 +10,8 @@ const colors = ["red", "blue", "orange", "yellow", "green", "purple", "navy"]
 const unitSize = 25
 
 let foodColor = colors[Math.floor(Math.random() * (colors.length - 1))]
-let snakeColor = colors[Math.floor(Math.random() * (colors.length - 1))]
-let prevFoodColor
+let snakeColor
+let prevFoodColor = colors[Math.floor(Math.random() * (colors.length - 1))]
 let velocity = 75
 
 
@@ -34,9 +34,6 @@ let snake = [
 
 window.addEventListener("keydown", changeDirection)
 resetBtn.addEventListener('click', resetGame)
-
-gameStart()
-    // createFood()
 
 function gameStart() {
     running = true
