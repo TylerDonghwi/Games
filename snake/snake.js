@@ -1,7 +1,7 @@
 const gameBoard = document.querySelector("#gameBoard")
 const context = gameBoard.getContext("2d")
-const scoreText = document.querySelector("score")
-const resetBtn = document.querySelector("resetBtn")
+const scoreText = document.querySelector("#scoreText")
+const resetBtn = document.querySelector("#resetBtn")
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
 
@@ -27,12 +27,10 @@ let snake = [
 ]
 
 window.addEventListener("keydown", changeDirection)
-
-// resetBtn.addEventListener("click", audio.play())
+resetBtn.addEventListener('click', resetGame)
 
 gameStart()
-createFood()
-drawFood()
+    // createFood()
 
 function gameStart() {
     running = true
@@ -43,13 +41,21 @@ function gameStart() {
 }
 
 function nextTick() {
+    // check if the game is running
     if (running) {
         setTimeout(() => {
             clearBoard()
             drawFood()
             moveSnake()
-            drawSnake
-        })
+            drawSnake()
+            checkGameOver()
+            nextTick()
+        }, 50)
+    } else {
+        displayGameOver()
+        const audio = document.querySelector("#audio-loss")
+        audio.currentTime = 0
+        audio.play()
     }
 }
 
@@ -57,8 +63,9 @@ function clearBoard() {}
 
 function createFood() {
     function randomFood(min, max) {
-        const randNum = Math.round((Math.random() * (max - min) + min) / unitSize) * unitSize
-        return randNum
+        // random coordinate in the board
+        const random = Math.round((Math.random() * (max - min) + min) / unitSize) * unitSize
+        return random
     }
     foodX = randomFood(0, gameWidth - unitSize)
     foodY = randomFood(0, gameWidth - unitSize)
@@ -79,24 +86,4 @@ function checkGameOver() {}
 
 function displayGameOver() {}
 
-function resetGame() {
-    console.log("hi")
-}
-
-
-
-
-
-
-
-
-
-// later 
-const audio = document.querySelector("#audio-loss")
-const button = document.querySelector('#button')
-
-// audio plays when you lose
-button.addEventListener("click", () => {
-    audio.currentTime = 0
-    audio.play()
-})
+function resetGame() {}
