@@ -4,7 +4,7 @@ const scoreText = document.querySelector("#scoreText")
 const resetBtn = document.querySelector("#resetBtn")
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
-
+const boardBackground = "white";
 const snakeColor = "lightgreen"
 const snakeBorder = "black"
 const foodColor = ["red", "blue", "orange", "yellow", "green", "purple", "navy"];
@@ -50,7 +50,7 @@ function nextTick() {
             drawSnake()
             checkGameOver()
             nextTick()
-        }, 50)
+        }, 500)
     } else {
         displayGameOver()
         const audio = document.querySelector("#audio-loss")
@@ -59,7 +59,10 @@ function nextTick() {
     }
 }
 
-function clearBoard() {}
+function clearBoard() {
+    context.fillStyle = boardBackground
+    context.fillRect(0, 0, gameWidth, gameHeight)
+}
 
 function createFood() {
     function randomFood(min, max) {
@@ -76,9 +79,30 @@ function drawFood() {
     context.fillRect(foodX, foodY, unitSize, unitSize)
 }
 
-function moveSnake() {}
+function moveSnake() {
+    const head = {
+        x: snake[0].x + xVelocity,
+        y: snake[0].y + yVelocity
+    }
+    snake.unshift(head)
+        // if the snake has eaten the fruit, increase by 1 otherwise don't
+    if (snake[0].x == foodX && snake[0].y == foodY) {
+        score++
+        scoreText.textContent = score
+        createFood()
+    } else {
+        snake.pop();
+    }
+}
 
-function drawSnake() {}
+function drawSnake() {
+    context.fillStyle = snakeColor
+    context.strokeStyle = snakeBorder
+    snake.forEach(snakePart => {
+        context.fillRect(snakePart.x, snakePart.y, unitSize, unitSize)
+        context.strokeRect(snakePart.x, snakePart.y, unitSize, unitSize)
+    })
+}
 
 function changeDirection() {}
 
