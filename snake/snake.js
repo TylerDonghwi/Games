@@ -4,20 +4,21 @@ const scoreText = document.querySelector("#scoreText")
 const resetBtn = document.querySelector("#resetBtn")
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
-const boardBackground = "white";
+const boardBackground = "white"
 const snakeColor = "lightgreen"
 const snakeBorder = "black"
-const foodColor = ["red", "blue", "orange", "yellow", "green", "purple", "navy"];
-const unitSize = 25;
+const foodColor = ["red", "blue", "orange", "yellow", "green", "purple", "navy"]
+const unitSize = 25
+let velocity = 75
 
 
-let running = false;
-let xVelocity = unitSize;
-let yVelocity = 0;
-let foodX;
-let foodY;
+let running = false
+let xVelocity = velocity
+let yVelocity = 0
+let foodX
+let foodY
 
-let score = 0;
+let score = 0
 
 let snake = [
     { x: unitSize * 4, y: 0 },
@@ -51,7 +52,7 @@ function nextTick() {
             drawSnake()
             checkGameOver()
             nextTick()
-        }, 50)
+        }, velocity)
     } else {
         displayGameOver()
         const audio = document.querySelector("#audio-loss")
@@ -76,7 +77,7 @@ function createFood() {
 }
 
 function drawFood() {
-    context.fillStyle = foodColor[Math.floor(Math.random() * (foodColor.length - 1))];
+    context.fillStyle = foodColor[Math.floor(Math.random() * (foodColor.length - 1))]
     context.fillRect(foodX, foodY, unitSize, unitSize)
 }
 
@@ -89,10 +90,11 @@ function moveSnake() {
         // if the snake has eaten the fruit, increase by 1 otherwise don't
     if (snake[0].x == foodX && snake[0].y == foodY) {
         score++
+        velocity -= 2
         scoreText.textContent = score
         createFood()
     } else {
-        snake.pop();
+        snake.pop()
     }
 }
 
@@ -165,17 +167,18 @@ function checkGameOver() {
 }
 
 function displayGameOver() {
-    context.font = '50px Press-Start-2P'
+    context.font = '50px PressStart2P'
     context.fillStyle = 'black'
     context.textAlign = 'center'
     context.fillText("Game Over", gameWidth / 2, gameHeight / 2)
-    running = false;
+    running = false
 }
 
 function resetGame() {
-    score = 0;
+    score = 0
     xVelocity = unitSize
     yVelocity = 0
+        // reset snake
     snake = [
         { x: unitSize * 4, y: 0 },
         { x: unitSize * 3, y: 0 },
