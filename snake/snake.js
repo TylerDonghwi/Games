@@ -5,10 +5,13 @@ const resetBtn = document.querySelector("#resetBtn")
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
 const boardBackground = "white"
-const snakeColor = "lightgreen"
 const snakeBorder = "black"
-const foodColor = ["red", "blue", "orange", "yellow", "green", "purple", "navy"]
+const colors = ["red", "blue", "orange", "yellow", "green", "purple", "navy"]
 const unitSize = 25
+
+let foodColor = colors[Math.floor(Math.random() * (colors.length - 1))]
+let snakeColor = colors[Math.floor(Math.random() * (colors.length - 1))]
+let prevFoodColor
 let velocity = 75
 
 
@@ -21,6 +24,7 @@ let foodY
 let score = 0
 
 let snake = [
+    // initially snake is located in left top corner
     { x: unitSize * 4, y: 0 },
     { x: unitSize * 3, y: 0 },
     { x: unitSize * 2, y: 0 },
@@ -77,8 +81,9 @@ function createFood() {
 }
 
 function drawFood() {
-    context.fillStyle = foodColor[Math.floor(Math.random() * (foodColor.length - 1))]
+    context.fillStyle = foodColor
     context.fillRect(foodX, foodY, unitSize, unitSize)
+    foodColor
 }
 
 function moveSnake() {
@@ -87,11 +92,15 @@ function moveSnake() {
         y: snake[0].y + yVelocity
     }
     snake.unshift(head)
-        // if the snake has eaten the fruit, increase by 1 otherwise don't
+
+
+    // if the snake has eaten the fruit, increase by 1 otherwise don't
     if (snake[0].x == foodX && snake[0].y == foodY) {
         score++
         velocity -= 2
         scoreText.textContent = score
+        prevFoodColor = foodColor
+        foodColor = colors[Math.floor(Math.random() * (colors.length - 1))]
         createFood()
     } else {
         snake.pop()
@@ -99,7 +108,7 @@ function moveSnake() {
 }
 
 function drawSnake() {
-    context.fillStyle = snakeColor
+    context.fillStyle = prevFoodColor
     context.strokeStyle = snakeBorder
     snake.forEach(snakePart => {
         context.fillRect(snakePart.x, snakePart.y, unitSize, unitSize)
@@ -178,7 +187,11 @@ function resetGame() {
     score = 0
     xVelocity = unitSize
     yVelocity = 0
-        // reset snake
+
+    foodColor = colors[Math.floor(Math.random() * (colors.length - 1))]
+    snakeColor = colors[Math.floor(Math.random() * (colors.length - 1))]
+
+    // reset snake
     snake = [
         { x: unitSize * 4, y: 0 },
         { x: unitSize * 3, y: 0 },
