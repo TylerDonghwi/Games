@@ -104,7 +104,39 @@ function drawSnake() {
     })
 }
 
-function changeDirection() {}
+function changeDirection(event) {
+    const keyPressed = event.keyCode
+        // up = 38, down = 40, left = 37, right =  39
+    const left = 37
+    const up = 38
+    const right = 39
+    const down = 40
+
+    const goingUp = (yVelocity == -unitSize)
+    const goingDown = (yVelocity == unitSize)
+    const goingLeft = (xVelocity == -unitSize)
+    const goingRight = (xVelocity == unitSize)
+
+    switch (true) {
+        // you can't turn 180 in snake game
+        case (keyPressed == left && !goingRight):
+            xVelocity = -unitSize
+            yVelocity = 0
+            break
+        case (keyPressed == right && !goingLeft):
+            xVelocity = unitSize
+            yVelocity = 0
+            break
+        case (keyPressed == up && !goingDown):
+            xVelocity = 0
+            yVelocity = -unitSize
+            break
+        case (keyPressed == down && !goingUp):
+            xVelocity = 0
+            yVelocity = unitSize
+            break
+    }
+}
 
 function checkGameOver() {}
 
