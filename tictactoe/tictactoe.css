@@ -7,19 +7,19 @@
 #container {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    width: 225px;
+    width: 420px;
     margin: auto;
     margin-top: 0px;
     margin-bottom: 10px;
-    font-size: 50px;
+    font-size: 75px;
     cursor: pointer;
-    line-height: 75px;
+    line-height: 140px;
     text-align: center;
 }
 
 .cell {
-    width: 75px;
-    height: 75px;
+    width: 140px;
+    height: 140px;
     border: 3px solid;
     position: relative;
     transition: all 0.2s;
