@@ -1,5 +1,5 @@
 const cells = document.querySelectorAll('.cell')
-const turn = document.querySelector('#turn')
+const status = document.querySelector('#status')
 const restartBtn = document.querySelector('#restartBtn')
 const winConditions = [
     [0, 1, 2],
@@ -25,7 +25,7 @@ initialiseGame()
 function initialiseGame() {
     cells.forEach(cell => cell.addEventListener('click', cellClicked))
     restartBtn.addEventListener('click', restartGame)
-    turn.textContent = `${currentPlayer}'s turn`
+    status.textContent = `Click a tile to play`
     running = true
     currentPlayer = 'O'
 }
@@ -56,7 +56,7 @@ function updateCell(cell, index) {
 function changePlayer() {
     if (running) {
         currentPlayer = (currentPlayer == 'X') ? "O" : "X"
-        turn.textContent = `${currentPlayer}'s turn`
+        status.textContent = `Click a tile to play`
     }
 
 }
@@ -92,10 +92,10 @@ function checkWinner() {
     })
 
     if (finished) {
-        turn.textContent = `${currentPlayer} wins!`
+        status.textContent = currentPlayer == "O" ? `You win!` : `Computer wins!`
         running = false
     } else if (!options.includes("")) {
-        turn.textContent = `Draw!`
+        status.textContent = `Draw!`
         running = false
     }
 }
@@ -106,6 +106,6 @@ function restartGame() {
     xList.length = 0
     oList.length = 0
     currentPlayer = 'O'
-    turn.textContent = `${currentPlayer}'s turn`
+    status.textContent = `Click a tile to play`
     running = true
 }
