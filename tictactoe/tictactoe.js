@@ -47,4 +47,7 @@ function changePlayer() {
 
 function checkWinner() {}
 
-function restartGame() {}
+function restartGame() {
+    options = ['', '', '', '', '', '', '', '', '']
+    cells.forEach(cell => cell.textContent = '')
+}
