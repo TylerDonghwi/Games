@@ -14,7 +14,10 @@ const winConditions = [
 
 let options = ['', '', '', '', '', '', '', '', '']
 
-let currentPlayer = 'X'
+let currentPlayer = 'O'
+const xList = []
+const oList = []
+
 let running = false
 
 initialiseGame()
@@ -24,6 +27,7 @@ function initialiseGame() {
     restartBtn.addEventListener('click', restartGame)
     turn.textContent = `${currentPlayer}'s turn`
     running = true
+    currentPlayer = 'O'
 }
 
 function cellClicked() {
@@ -39,15 +43,45 @@ function cellClicked() {
 function updateCell(cell, index) {
     options[index] = currentPlayer
     cell.textContent = currentPlayer
+    currentPlayer == 'X' ? xList.push(index) : oList.push(index)
 }
 
 function changePlayer() {
-
+    currentPlayer = (currentPlayer == 'X') ? "O" : "X"
+    turn.textContent = `${currentPlayer}'s turn`
 }
 
-function checkWinner() {}
+function checkWinner() {
+    let finished = false
+
+    winConditions.forEach(winCondition => {
+        if (winCondition.every(index => oList.includes(String(index)))) {
+            finished = true
+        }
+    })
+    winConditions.forEach(winCondition => {
+        if (winCondition.every(index => xList.includes(String(index)))) {
+            finished = true
+        }
+    })
+
+    if (finished) {
+        turn.textContent = `${currentPlayer} wins!`
+        running = false
+    } else if (!options.includes("")) {
+        turn.textContent = `Draw!`
+        running = false
+    } else {
+        changePlayer()
+    }
+}
 
 function restartGame() {
     options = ['', '', '', '', '', '', '', '', '']
     cells.forEach(cell => cell.textContent = '')
+    xList.length = 0
+    oList.length = 0
+    currentPlayer = 'O'
+    turn.textContent = `${currentPlayer}'s turn`
+    running = true
 }
