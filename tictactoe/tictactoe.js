@@ -38,6 +38,16 @@ function cellClicked() {
     }
     updateCell(this, cellIndex)
     checkWinner()
+
+    if (running) {
+        changePlayer()
+        computerPlay()
+        checkWinner()
+        changePlayer()
+    }
+    console.log(xList)
+
+    console.log(oList)
 }
 
 function updateCell(cell, index) {
@@ -49,7 +59,23 @@ function updateCell(cell, index) {
 function changePlayer() {
     currentPlayer = (currentPlayer == 'X') ? "O" : "X"
     turn.textContent = `${currentPlayer}'s turn`
+
 }
+
+function computerPlay() {
+    if (currentPlayer = 'X') {
+        let num
+        do {
+            num = String(Math.floor(Math.random() * 8))
+            if (!xList.includes(num) && !oList.includes(num)) {
+                cells[num].textContent = currentPlayer
+                xList.push(num)
+                break
+            }
+        } while (xList.includes(num) || oList.includes(num))
+    }
+}
+
 
 function checkWinner() {
     let finished = false
@@ -71,8 +97,6 @@ function checkWinner() {
     } else if (!options.includes("")) {
         turn.textContent = `Draw!`
         running = false
-    } else {
-        changePlayer()
     }
 }
 
