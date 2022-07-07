@@ -132,12 +132,12 @@ function checkCollision() {
 
     // ball hits the paddle
     if (ballX <= (paddle1.x + paddle1.width + ballRadius) && ballY > paddle1.y && ballY < paddle1.y + paddle1.height) {
-        ballX = paddl1.x + paddle1.width + ballRadius // if ball gets stuck in the corner
+        ballX = paddle1.x + paddle1.width + ballRadius // if ball gets stuck in the corner
         ballXDirection *= -1
         ballSpeed += 0.3
     }
     if (ballX >= (paddle2.x - ballRadius) && ballY > paddle2.y && ballY < paddle2.y + paddle1.height) {
-        ballX = paddl2.x + paddle2.width + ballRadius // if ball gets stuck in the corner
+        ballX = paddle2.x + paddle2.width + ballRadius // if ball gets stuck in the corner
         ballXDirection *= -1
         ballSpeed += 0.3
     }
@@ -178,6 +178,21 @@ function changeDirection(event) {
     }
 }
 
-function updateScore() {}
+function updateScore() {
+    scoreText.textContent = `${player1Score} : ${player2Score}`
+}
 
-function resetGame() {}
+function resetGame() {
+    player1Score = 0
+    player2Score = 0
+    paddle1 = new Paddle(25, 100, 0, 0)
+    paddle2 = new Paddle(25, 100, gameWidth - 25, gameHeight - 100)
+    ballSpeed = 1
+    ballX = 0
+    ballY = 0
+    ballXDirection = 0
+    ballYDirection = 0
+    updateScore()
+    clearInterval(intervalId)
+    gameStart()
+}
