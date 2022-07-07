@@ -8,6 +8,7 @@ const boardBackground = 'white'
 const paddle1Color = 'blue'
 const paddle2Color = 'red'
 const paddleBorder = 'black'
+const ballBorderColor = 'black'
 const ballColor = 'black'
 const ballRadius = 12.5
 const paddleSpeed = 40.625
@@ -83,7 +84,15 @@ function createBall() {}
 
 function moveBall() {}
 
-function drawBall(ballX, ballY) {}
+function drawBall(ballX, ballY) {
+    context.fillStyle = ballColor
+    context.strokeStyle = ballBorderColor
+    context.lineWidth = 2
+    context.beginPath()
+    context.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI)
+    context.stroke()
+    context.fill()
+}
 
 function checkCollision() {}
 
@@ -121,7 +130,6 @@ function changeDirection(event) {
             break
     }
 }
-
 
 function updateScore() {}
 
