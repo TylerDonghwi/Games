@@ -1,1 +1,36 @@
 @import url(../general.css);
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameBoard {
+    border: 3px solid;
+}
+
+#scoreText {
+    font-size: 30px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+#resetBtn {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: rgb(181, 210, 210);
+}
+
+#resetBtn:hover {
+    box-shadow: 1px 1px 1px;
+    background-color: rgb(181, 200, 200);
+}
+
+#resetBtn:active {
+    left: 1px;
+    top: 1px;
+    box-shadow: none;
+}
