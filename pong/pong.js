@@ -10,7 +10,7 @@ const paddle2Color = 'red'
 const paddleBorder = 'black'
 const ballColor = 'black'
 const ballRadius = 12.5
-const paddleSpeed = 50
+const paddleSpeed = 40.625
 
 // ball
 let intervalId
@@ -41,13 +41,28 @@ resetBtn.addEventListener('click', resetGame)
 
 // start game
 gameStart()
-drawPaddles()
 
-function gameStart() {}
 
-function nextTick() {}
+function gameStart() {
+    createBall()
+    nextTick()
+}
 
-function clearBoard() {}
+function nextTick() {
+    intervalId = setTimeout(() => {
+        clearBoard()
+        drawPaddles()
+        moveBall()
+        drawBall(ballX, ballY)
+        checkCollision()
+        nextTick()
+    }, 10)
+}
+
+function clearBoard() {
+    context.fillStyle = boardBackground
+    context.fillRect(0, 0, gameWidth, gameHeight)
+}
 
 function drawPaddles() {
     context.strokeStyle = paddleBorder
@@ -68,11 +83,45 @@ function createBall() {}
 
 function moveBall() {}
 
-function drawBall() {}
+function drawBall(ballX, ballY) {}
 
 function checkCollision() {}
 
-function changeDirection() {}
+function changeDirection(event) {
+    const keyPressed = event.keyCode
+
+    // paddle 1 is w/s
+    const paddle1up = 87
+    const paddle1down = 83
+
+    // paddle 2 is up/down 
+    const paddle2up = 38
+    const paddle2down = 40
+
+    switch (keyPressed) {
+        case (paddle1up):
+            if (paddle1.y > 0) {
+                paddle1.y -= paddleSpeed
+            }
+            break
+        case (paddle1down):
+            if (paddle1.y < gameHeight - paddle1.height) {
+                paddle1.y += paddleSpeed
+            }
+            break
+        case (paddle2up):
+            if (paddle2.y > 0) {
+                paddle2.y -= paddleSpeed
+            }
+            break
+        case (paddle2down):
+            if (paddle2.y < gameHeight - paddle2.height) {
+                paddle2.y += paddleSpeed
+            }
+            break
+    }
+}
+
 
 function updateScore() {}
 
