@@ -123,7 +123,8 @@ function checkCollision() {
         updateScore()
         createBall()
         return
-    } else if (ballX >= gameWidth - ballRadius) {
+    }
+    if (ballX >= gameWidth - ballRadius) {
         player1Score++
         updateScore()
         createBall()
@@ -136,8 +137,8 @@ function checkCollision() {
         ballXDirection *= -1
         ballSpeed += 0.3
     }
-    if (ballX >= (paddle2.x - ballRadius) && ballY > paddle2.y && ballY < paddle2.y + paddle1.height) {
-        ballX = paddle2.x + paddle2.width + ballRadius // if ball gets stuck in the corner
+    if (ballX >= (paddle2.x - ballRadius) && ballY > paddle2.y && ballY < paddle2.y + paddle2.height) {
+        ballX = paddle2.x - ballRadius // if ball gets stuck in the corner
         ballXDirection *= -1
         ballSpeed += 0.3
     }
