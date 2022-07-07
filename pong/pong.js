@@ -80,9 +80,27 @@ function drawPaddles() {
 
 }
 
-function createBall() {}
+function createBall() {
+    ballSpeed = 1
+    if (Math.round(Math.random()) == 1) {
+        ballXDirection = 1
+    } else {
+        ballXDirection = -1
+    }
+    if (Math.round(Math.random()) == 1) {
+        ballYDirection = 1
+    } else {
+        ballYDirection = -1
+    }
+    ballX = gameWidth / 2
+    ballY = gameHeight / 2
+    drawBall()
+}
 
-function moveBall() {}
+function moveBall() {
+    ballX += ballSpeed * ballXDirection
+    ballY += ballSpeed * ballYDirection
+}
 
 function drawBall(ballX, ballY) {
     context.fillStyle = ballColor
