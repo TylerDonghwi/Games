@@ -43,7 +43,6 @@ resetBtn.addEventListener('click', resetGame)
 // start game
 gameStart()
 
-
 function gameStart() {
     createBall()
     nextTick()
@@ -112,7 +111,37 @@ function drawBall(ballX, ballY) {
     context.fill()
 }
 
-function checkCollision() {}
+function checkCollision() {
+    // hits the top or bottom
+    if (ballY <= 0 + ballRadius || ballY >= gameHeight - ballRadius) {
+        ballYDirection *= -1
+    }
+
+    // if it hits the wall score given to players
+    if (ballX <= 0 + ballRadius) {
+        player2Score++
+        updateScore()
+        createBall()
+        return
+    } else if (ballX >= gameWidth - ballRadius) {
+        player1Score++
+        updateScore()
+        createBall()
+        return
+    }
+
+    // ball hits the paddle
+    if (ballX <= (paddle1.x + paddle1.width + ballRadius) && ballY > paddle1.y && ballY < paddle1.y + paddle1.height) {
+        ballX = paddl1.x + paddle1.width + ballRadius // if ball gets stuck in the corner
+        ballXDirection *= -1
+        ballSpeed += 0.3
+    }
+    if (ballX >= (paddle2.x - ballRadius) && ballY > paddle2.y && ballY < paddle2.y + paddle1.height) {
+        ballX = paddl2.x + paddle2.width + ballRadius // if ball gets stuck in the corner
+        ballXDirection *= -1
+        ballSpeed += 0.3
+    }
+}
 
 function changeDirection(event) {
     const keyPressed = event.keyCode
